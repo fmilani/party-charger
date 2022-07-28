@@ -14,7 +14,7 @@ const PartyAttendee: NextPage = () => {
   if (error) return <div>ERROR! =(</div>;
   if (!data) return <div>Loading...</div>;
   const { partyName, attendeeName, expenses } = data;
-  const updateExpense = async (expense) => {
+  const updateExpense = async (expense: any) => {
     await (
       await fetch(partyAttendeeUrl, {
         method: "POST",
@@ -30,27 +30,35 @@ const PartyAttendee: NextPage = () => {
       <div className="flex gap-4 justify-center">
         <button
           className={`text-8xl text-white border ${
-            expenses.find((e) => e.description === "carne").attendees[attendee]
+            expenses.find((e: any) => e.description === "carne").attendees[
+              attendee as string
+            ]
               ? "bg-indigo-500"
               : "border-indigo-500"
           } px-16 py-32 flex-none`}
           onClick={async () => updateExpense("carne")}
         >
           🥩
-          {expenses.find((e) => e.description === "carne").attendees[attendee]
+          {expenses.find((e: any) => e.description === "carne").attendees[
+            attendee as string
+          ]
             ? "✅"
             : "❌"}
         </button>
         <button
           className={`text-8xl text-white border ${
-            expenses.find((e) => e.description === "breja").attendees[attendee]
+            expenses.find((e: any) => e.description === "breja").attendees[
+              attendee as string
+            ]
               ? "bg-indigo-500"
               : "border-indigo-500"
           } px-16 py-32 flex-none`}
           onClick={async () => updateExpense("breja")}
         >
           🍺
-          {expenses.find((e) => e.description === "breja").attendees[attendee]
+          {expenses.find((e: any) => e.description === "breja").attendees[
+            attendee as string
+          ]
             ? "✅"
             : "❌"}
         </button>

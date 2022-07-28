@@ -15,7 +15,7 @@ const Party: NextPage = ({ party }: any) => {
       </h1>
       <h3 className="text-2xl font-bold mb-2">Quem vai</h3>
       <div className="flex gap-4 justify-center">
-        {party.attendees.map((attendee) => (
+        {party.attendees.map((attendee: any) => (
           <div key={attendee.email}>
             <h5 className="text-center">{`${attendee.first_name} ${
               attendee.last_name || ""
@@ -34,7 +34,7 @@ const Party: NextPage = ({ party }: any) => {
       </div>
       <h3 className="text-2xl font-bold mb-2 mt-8">Quanto custou</h3>
       <ul>
-        {party.expenses.map((expense) => (
+        {party.expenses.map((expense: any) => (
           <li key={expense.description}>
             {expense.description} - {expense.value}
           </li>
@@ -55,9 +55,9 @@ const Party: NextPage = ({ party }: any) => {
 };
 export default Party;
 
-export async function getServerSideProps({ query: { id } }) {
+export async function getServerSideProps({ query }: { query: any }) {
   const response = await fetch(
-    `https://fmilani-party-charger.builtwithdark.com/party/${id}`,
+    `https://fmilani-party-charger.builtwithdark.com/party/${query.id}`,
     {
       method: "GET",
     }
