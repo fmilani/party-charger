@@ -6,15 +6,6 @@ import { useState } from "react";
 const Home: NextPage = () => {
   const [name, setName] = useState("");
   const [splitwiseApiKey, setSplitwiseApiKey] = useState("");
-  const [newAttendee, setNewAttendee] = useState("");
-  const [attendees, setAttendees] = useState<string[]>([]);
-  const [newExpense, setNewExpense] = useState<{
-    description: string;
-    value: string;
-  }>({ description: "", value: "" });
-  const [expenses, setExpenses] = useState<
-    { description: string; value: string }[]
-  >([]);
   const router = useRouter();
   return (
     <div className="md:container md:mx-auto">
@@ -39,8 +30,6 @@ const Home: NextPage = () => {
               body: JSON.stringify({
                 name,
                 splitwiseApiKey,
-                attendees,
-                expenses,
               }),
             });
             const { id } = await response.json();
@@ -70,96 +59,6 @@ const Home: NextPage = () => {
                 type="text"
               />
             </label>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Convidados</h3>
-              <div className="flex items-end gap-2">
-                <label className="block flex-1">
-                  <span>Email</span>
-                  <input
-                    id="newAttendee"
-                    name="newAttendee"
-                    value={newAttendee}
-                    onChange={(e) => setNewAttendee(e.target.value)}
-                    type="email"
-                    className="block w-full mt-1"
-                  />
-                </label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAttendees([...attendees, newAttendee]);
-                    setNewAttendee("");
-                  }}
-                  disabled={!newAttendee}
-                  className="cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-full"
-                >
-                  Adicionar
-                </button>
-              </div>
-              <ul className="mt-2">
-                {attendees.map((attendee) => (
-                  <li key={attendee}>{attendee}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold mb-2">Despesas</h3>
-              <div className="flex items-end gap-2">
-                <label className="block flex-1">
-                  <span>Descrição</span>
-                  <input
-                    id="newExpenseDescription"
-                    name="newExpenseDescription"
-                    value={newExpense?.description}
-                    onChange={(e) =>
-                      setNewExpense({
-                        ...newExpense,
-                        description: e.target.value,
-                      })
-                    }
-                    className="mt-1 block w-full"
-                    type="text"
-                  />
-                </label>
-                <label className="block shrink w-32">
-                  <span>Valor</span>
-                  <input
-                    id="newExpenseValue"
-                    name="newExpenseValue"
-                    value={newExpense?.value}
-                    onChange={(e) =>
-                      setNewExpense({ ...newExpense, value: e.target.value })
-                    }
-                    type="number"
-                    className="mt-1 block w-full"
-                  />
-                </label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (
-                      newExpense &&
-                      newExpense.value &&
-                      newExpense.description
-                    ) {
-                      setExpenses([...expenses, newExpense]);
-                      setNewExpense({ description: "", value: "" });
-                    }
-                  }}
-                  disabled={!newExpense.description || !newExpense.value}
-                  className="cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-full flex-none"
-                >
-                  Adicionar
-                </button>
-              </div>
-              <ul className="mt-2">
-                {expenses.map((expense) => (
-                  <li key={expense.description}>
-                    {expense.description} - {expense.value}
-                  </li>
-                ))}
-              </ul>
-            </div>
             <button
               type="submit"
               className="m-auto text-white bg-indigo-500 px-16 py-4 rounded-full flex-none"
