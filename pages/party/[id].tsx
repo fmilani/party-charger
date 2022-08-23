@@ -157,7 +157,7 @@ const Party = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div className={router.query.host ? "visible" : "hidden"}>
         <h3 className="text-2xl font-bold mb-2 mt-8">Despesas</h3>
         <div className="flex items-end gap-2">
           <label className="block flex-1">
@@ -210,6 +210,9 @@ const Party = () => {
         </div>
       </div>
       <h3 className="text-2xl font-bold mb-2 mt-8">Quanto custou</h3>
+      <h4 className="text-xl font-bold mb-4">
+        Total: {party.expenses.reduce((acc, cur) => acc + Number(cur.value), 0)}
+      </h4>
       <ul>
         {party.expenses.map((expense: any) => (
           <li key={expense.description}>
