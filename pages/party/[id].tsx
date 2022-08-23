@@ -222,7 +222,8 @@ const Party = () => {
           onClick={async () => {
             fetch(`/api/party/${router.query.id}/charge`, { method: "POST" });
           }}
-          className="m-auto text-white bg-indigo-500 px-16 py-4 rounded-full flex-none"
+          className="m-auto text-white bg-indigo-500 disabled:bg-gray-200 px-16 py-4 rounded-full flex-none"
+          disabled={!router.query.host}
         >
           Fazer as contas
         </button>
