@@ -27,7 +27,6 @@ function ComboBox({
   const [items, setItems] = useState(friends);
   const {
     isOpen,
-    getLabelProps,
     getMenuProps,
     getInputProps,
     getComboboxProps,
@@ -51,14 +50,16 @@ function ComboBox({
   return (
     <div className="block flex-1">
       <div id="combobox-input-wrapper" className="flex flex-col gap-1">
-        <label className="w-fit" {...getLabelProps()}>
-          E aí, bora? Procura seu nome na lista
-        </label>
         <div
           className="flex shadow-sm bg-white gap-0.5"
           {...getComboboxProps()}
         >
-          <input type="text" className="w-full p-1.5" {...getInputProps()} />
+          <input
+            placeholder="Nome ou email"
+            type="text"
+            className="w-full p-1.5 border-inherit rounded-lg"
+            {...getInputProps()}
+          />
         </div>
       </div>
       <ul
@@ -110,31 +111,37 @@ const Party = () => {
   );
   if (error) return <div>ERROR =((</div>;
   return (
-    <div className="md:container md:mx-auto">
-      <h1 className="text-4xl font-bold text-center my-8">
-        🥳 {party.name} 🥳
-      </h1>
-      <h3 className="text-2xl font-bold mb-2">Quem vai até agora</h3>
-      <div className="flex gap-4 justify-center">
+    <div className="md:container md:mx-auto px-4">
+      <h1 className="text-3xl font-bold text-center my-8">{party.name}</h1>
+      <h3 className="text-2xl font-bold">Quem confirmou presença</h3>
+      <p className="text-md font-bold mb-2">
+        ({party.attendees.length} pessoas)
+      </p>
+      <div className="flex gap-4 overflow-auto">
         {party.attendees.map((attendee: any) => (
-          <div key={attendee.email}>
-            <h5 className="text-center">{`${attendee.first_name} ${
+          <div
+            key={attendee.email}
+            className="flex-shrink-0 w-24 p-2 border rounded-lg"
+          >
+            <h5 className="text-center truncate">{`${attendee.first_name} ${
               attendee.last_name || ""
             }`}</h5>
             <Image
               src={attendee.photo}
-              width={200}
-              height={200}
+              width={96}
+              height={96}
               alt={attendee.name}
               onClick={() => {
                 router.push(`${router.asPath}/${attendee.email}`);
               }}
             />
+            <div>Já pagou</div>
           </div>
         ))}
       </div>
-      <div>
-        <div className="flex items-end gap-2">
+      <div className="mt-4">
+        <p className="w-full">Bora? Coloca seu nome aqui embaixo:</p>
+        <div className="flex items-center gap-2">
           <ComboBox
             friends={friends}
             selectedItem={newAttendee}
@@ -151,9 +158,9 @@ const Party = () => {
               router.push(`${router.asPath}/${newAttendee.email}`);
             }}
             disabled={newAttendee.email === ""}
-            className="disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-full"
+            className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 text-white bg-indigo-500 px-4 py-2 rounded-lg"
           >
-            Partiu festa!
+            Bora!
           </button>
         </div>
       </div>
@@ -172,11 +179,11 @@ const Party = () => {
                   description: e.target.value,
                 })
               }
-              className="mt-1 block w-full"
+              className="mt-1 block w-full border-inherit rounded-lg"
               type="text"
             />
           </label>
-          <label className="block shrink w-32">
+          <label className="block shrink w-20">
             <span>Valor</span>
             <input
               id="newExpenseValue"
@@ -186,7 +193,7 @@ const Party = () => {
                 setNewExpense({ ...newExpense, value: e.target.value })
               }
               type="number"
-              className="mt-1 block w-full"
+              className="mt-1 block w-full border-inherit rounded-lg"
             />
           </label>
           <button
@@ -203,20 +210,21 @@ const Party = () => {
               });
             }}
             disabled={!newExpense.description || !newExpense.value}
-            className="disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-full"
+            className="disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-lg"
           >
             Adicionar
           </button>
         </div>
       </div>
-      <h3 className="text-2xl font-bold mb-2 mt-8">Quanto custou</h3>
-      <h4 className="text-xl font-bold mb-4">
-        Total:{" "}
-        {party.expenses.reduce(
+      <h3 className="text-2xl font-bold mt-8">Quanto custou</h3>
+      <p className="text-md font-bold mb-2">
+        (
+        {`${party.expenses.reduce(
           (acc: number, cur: { value: string }) => acc + Number(cur.value),
           0
-        )}
-      </h4>
+        )} no total`}
+        )
+      </p>
       <ul>
         {party.expenses.map((expense: any) => (
           <li key={expense.description}>
@@ -224,12 +232,12 @@ const Party = () => {
           </li>
         ))}
       </ul>
-      <div className="text-center">
+      <div className="text-center py-4">
         <button
           onClick={async () => {
             fetch(`/api/party/${router.query.id}/charge`, { method: "POST" });
           }}
-          className="m-auto text-white bg-indigo-500 disabled:bg-gray-200 px-16 py-4 rounded-full flex-none"
+          className="m-auto text-white bg-indigo-500 disabled:bg-gray-200 px-16 py-4 rounded-lg flex-none"
           disabled={!router.query.host}
         >
           Fazer as contas
