@@ -135,7 +135,6 @@ const Party = () => {
                 router.push(`${router.asPath}/${attendee.email}`);
               }}
             />
-            <div>Já pagou</div>
           </div>
         ))}
       </div>
