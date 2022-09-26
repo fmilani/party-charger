@@ -68,7 +68,7 @@ const PartyAttendee: NextPage = () => {
           </button>
         ))}
       </div>
-      <div className="text-center mt-8">
+      <div className="text-center mt-4 py-4">
         <button
           onClick={() => router.back()}
           className="m-auto border border-indigo-500 px-16 py-4 rounded-lg flex-none"
