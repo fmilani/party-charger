@@ -9,8 +9,8 @@ function getFriendsFilter(inputValue: any) {
   return function friendsFilter(friend: any) {
     return (
       !inputValue ||
-      friend.first_name.toLowerCase().includes(inputValue) ||
-      friend.email.toLowerCase().includes(inputValue)
+      friend.first_name.toLowerCase().includes(inputValue.toLowerCase()) ||
+      friend.email.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 }
