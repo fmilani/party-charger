@@ -145,7 +145,9 @@ const Party = () => {
             />
             <div className="flex gap-1">
               <span>{!attendee.answered && "⚠️"}</span>
-              <span>{attendee.settled && "✅"}</span>
+              <span>
+                {(party.expenses_created ?? true) && attendee.settled && "✅"}
+              </span>
             </div>
           </div>
         ))}
