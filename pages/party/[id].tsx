@@ -17,10 +17,12 @@ function getFriendsFilter(inputValue: any) {
 
 function ComboBox({
   friends,
+  attendees,
   onSelect,
   selectedItem,
 }: {
   friends: any;
+  attendees: any;
   onSelect: any;
   selectedItem: any;
 }) {
@@ -35,7 +37,13 @@ function ComboBox({
   } = useCombobox({
     onInputValueChange({ inputValue }) {
       if (!inputValue) onSelect({ first_name: "", email: "" });
-      setItems(friends.filter(getFriendsFilter(inputValue)));
+      setItems(
+        friends
+          .filter(
+            (f: any) => !attendees.map((a: any) => a.email).includes(f.email)
+          )
+          .filter(getFriendsFilter(inputValue))
+      );
     },
     onSelectedItemChange({ selectedItem }) {
       onSelect(selectedItem);
@@ -143,6 +151,7 @@ const Party = () => {
         <div className="flex items-center gap-2">
           <ComboBox
             friends={friends}
+            attendees={party.attendees}
             selectedItem={newAttendee}
             onSelect={(selectedItem: any) => setNewAttendee(selectedItem)}
           />
@@ -224,10 +233,11 @@ const Party = () => {
         )} no total`}
         )
       </p>
-      <ul>
+      <ul className="border rounded-lg p-1 max-w-sm">
         {party.expenses.map((expense: any) => (
-          <li key={expense.description}>
-            {expense.description} - {expense.value}
+          <li key={expense.description} className="flex justify-between">
+            <span className="truncate">{expense.description}</span>
+            <span>{expense.value}</span>
           </li>
         ))}
       </ul>
