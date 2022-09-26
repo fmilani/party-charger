@@ -129,7 +129,7 @@ const Party = () => {
         {party.attendees.map((attendee: any) => (
           <div
             key={attendee.email}
-            className="flex-shrink-0 w-24 p-2 border rounded-lg"
+            className={`flex-shrink-0 w-24 p-2 border rounded-lg `}
           >
             <h5 className="text-center truncate">{`${attendee.first_name} ${
               attendee.last_name || ""
@@ -143,8 +143,15 @@ const Party = () => {
                 router.push(`${router.asPath}/${attendee.email}`);
               }}
             />
+            <div className="flex gap-1">
+              <span>{!attendee.answered && "⚠️"}</span>
+              <span>{attendee.settled && "✅"}</span>
+            </div>
           </div>
         ))}
+      </div>
+      <div className="text-sm mt-2">
+        Legenda: ⚠️ Falta responder | ✅ Já pagou
       </div>
       <div className="mt-4">
         <p className="w-full">Bora? Coloca seu nome aqui embaixo:</p>
