@@ -26,16 +26,16 @@ const PartyAttendee: NextPage = () => {
   };
   return (
     <div className="px-4 md:container md:mx-auto">
-      <h1 className="text-4xl font-bold text-center my-8">🥳 {partyName} 🥳</h1>
+      <h1 className="text-3xl font-bold text-center my-8">{partyName}</h1>
       <h3 className="text-xl font-bold">{`${attendeeName}, diz aí o que você vai dividir!`}</h3>
       <h3 className="text-lg mb-8">Depois de responder, pode fechar o site.</h3>
       <div className="grid grid-cols-1 gap-4 justify-center">
         {expenses.map((expense: any) => (
           <button
             key={expense.description}
-            className={`flex gap-1 text-4xl border ${
+            className={`flex gap-1 text-xl border ${
               expense.share ? "bg-indigo-500" : "border-indigo-500"
-            } p-12 rounded-full`}
+            } p-6 rounded-lg`}
             onClick={async () => {
               setOpen(false);
               const optimisticUpdatedExpense = {
@@ -71,7 +71,7 @@ const PartyAttendee: NextPage = () => {
       <div className="text-center mt-8">
         <button
           onClick={() => router.back()}
-          className="m-auto border border-indigo-500 px-16 py-4 rounded-full flex-none"
+          className="m-auto border border-indigo-500 px-16 py-4 rounded-lg flex-none"
         >
           Voltar
         </button>
@@ -80,7 +80,7 @@ const PartyAttendee: NextPage = () => {
         <Toast.Root
           open={open}
           onOpenChange={setOpen}
-          className="rounded-full bg-slate-900/75 text-white py-4 px-8 grid align-center"
+          className="rounded-lg bg-slate-900/75 text-white py-4 px-8 grid align-center"
         >
           <Toast.Title>Tá salvo!</Toast.Title>
           <Toast.Description>Valeu pela resposta.</Toast.Description>
