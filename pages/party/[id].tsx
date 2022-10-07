@@ -134,7 +134,7 @@ const Party = () => {
           {party.attendees.map((attendee: any) => (
             <div
               key={attendee.email}
-              className={`flex-shrink-0 w-24 p-2 border rounded-lg `}
+              className={`flex-shrink-0 w-24 p-2 border rounded-lg cursor-pointer hover:bg-gray-100`}
             >
               <h5 className="text-center truncate">{`${attendee.first_name} ${
                 attendee.last_name || ""
