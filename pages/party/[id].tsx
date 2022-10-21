@@ -125,8 +125,26 @@ const Party = () => {
         <title>{party.name}</title>
       </Head>
       <div className="md:container md:mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center my-8">{party.name}</h1>
-        <h3 className="text-2xl font-bold">Quem confirmou presença</h3>
+        <div className="my-8 text-center">
+          <h1 className="text-3xl font-bold">{party.name}</h1>
+          {party.expenses_created && (
+            <div className="mt-2 bg-slate-100">
+              <p>As contas foram feitas!</p>
+              <p>
+                <a
+                  className="underline"
+                  href={`https://secure.splitwise.com/#/groups/${party.group_id}`}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  Acesse o Splitwise
+                </a>{" "}
+                para quitar sua dívida.
+              </p>
+            </div>
+          )}
+        </div>
+        <h3 className="text-2xl font-bold mt-2">Quem confirmou presença</h3>
         <p className="text-md font-bold mb-2">
           ({party.attendees.length} pessoas)
         </p>
