@@ -268,11 +268,32 @@ const Party = () => {
           )} no total`}
           )
         </p>
-        <ul className="border rounded-lg p-1 max-w-sm">
+        <ul className="border rounded-lg p-1 max-w-md divide-y divide-dashed">
           {party.expenses.map((expense: any) => (
-            <li key={expense.description} className="flex justify-between">
-              <span className="truncate">{expense.description}</span>
-              <span>{expense.value}</span>
+            <li key={expense.description} className="p-1">
+              <div className="flex justify-between">
+                <span className="truncate">{expense.description}</span>
+                <span>{expense.value}</span>
+              </div>
+              {
+                <div className="flex justify-between text-slate-500 text-sm">
+                  <span>
+                    {
+                      Object.values(expense.attendees).filter((v) => v === true)
+                        .length
+                    }
+                    {party.expenses_created ? ' dividiram' : ' dividindo'}
+                  </span>
+                  <span>
+                    {Math.floor(
+                      (100 * Number(expense.value)) /
+                        Object.values(expense.attendees).filter(
+                          (v) => v === true
+                        ).length
+                    ) / 100}
+                  </span>
+                </div>
+              }
             </li>
           ))}
         </ul>
