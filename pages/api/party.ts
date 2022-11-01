@@ -1,13 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const r = await fetch(
-    "https://fmilani-party-charger.builtwithdark.com/party",
+    'https://fmilani-party-charger.builtwithdark.com/party',
     {
-      method: "POST",
+      method: 'POST',
       body: req.body,
     }
   );

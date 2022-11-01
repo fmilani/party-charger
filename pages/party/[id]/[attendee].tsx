@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import * as Toast from "@radix-ui/react-toast";
-import { useState } from "react";
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import * as Toast from '@radix-ui/react-toast';
+import { useState } from 'react';
 
 const PartyAttendee: NextPage = () => {
   const [open, setOpen] = useState(false);
@@ -19,7 +19,7 @@ const PartyAttendee: NextPage = () => {
   const updateExpense = async (expense: any) => {
     return await (
       await fetch(partyAttendeeUrl, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({ expense }),
       })
     ).json();
@@ -34,7 +34,7 @@ const PartyAttendee: NextPage = () => {
           <button
             key={expense.description}
             className={`flex gap-1 text-xl border ${
-              expense.share ? "bg-indigo-500" : "border-indigo-500"
+              expense.share ? 'bg-indigo-500' : 'border-indigo-500'
             } p-6 rounded-lg`}
             onClick={async () => {
               setOpen(false);
@@ -61,7 +61,7 @@ const PartyAttendee: NextPage = () => {
               setOpen(true);
             }}
           >
-            <span>{expense.share ? "✅" : "❌"}</span>
+            <span>{expense.share ? '✅' : '❌'}</span>
             <span className="whitespace-nowrap truncate">
               {expense.description}
             </span>
@@ -76,7 +76,7 @@ const PartyAttendee: NextPage = () => {
           Voltar
         </button>
       </div>
-      <Toast.Provider swipeDirection={"right"} duration={2000}>
+      <Toast.Provider swipeDirection={'right'} duration={2000}>
         <Toast.Root
           open={open}
           onOpenChange={setOpen}

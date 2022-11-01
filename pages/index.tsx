@@ -1,11 +1,11 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
-  const [name, setName] = useState("");
-  const [splitwiseApiKey, setSplitwiseApiKey] = useState("");
+  const [name, setName] = useState('');
+  const [splitwiseApiKey, setSplitwiseApiKey] = useState('');
   const router = useRouter();
   return (
     <div className="md:container md:mx-auto">
@@ -20,13 +20,13 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="text-4xl font-bold text-center my-8">
-          🥳 {name || "Criar festa"} 🥳
+          🥳 {name || 'Criar festa'} 🥳
         </h1>
         <form
           onSubmit={async (event) => {
             event.preventDefault();
-            const response = await fetch("/api/party", {
-              method: "POST",
+            const response = await fetch('/api/party', {
+              method: 'POST',
               body: JSON.stringify({
                 name,
                 splitwiseApiKey,

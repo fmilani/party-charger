@@ -1,10 +1,10 @@
-import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { useState } from "react";
-import { useCombobox } from "downshift";
-import useSWR, { SWRConfig } from "swr";
-import Head from "next/head";
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { useState } from 'react';
+import { useCombobox } from 'downshift';
+import useSWR, { SWRConfig } from 'swr';
+import Head from 'next/head';
 
 function getFriendsFilter(inputValue: any) {
   return function friendsFilter(friend: any) {
@@ -37,7 +37,7 @@ function ComboBox({
     getItemProps,
   } = useCombobox({
     onInputValueChange({ inputValue }) {
-      if (!inputValue) onSelect({ first_name: "", email: "" });
+      if (!inputValue) onSelect({ first_name: '', email: '' });
       setItems(
         friends
           .filter(
@@ -52,7 +52,7 @@ function ComboBox({
     selectedItem,
     items,
     itemToString(item) {
-      return item ? item.email : "";
+      return item ? item.email : '';
     },
   });
 
@@ -79,11 +79,11 @@ function ComboBox({
           items.map((item: any, index: any) => (
             <li
               className={[
-                "flex",
-                "flex-col",
-                highlightedIndex === index && "bg-indigo-500/10 cursor-pointer",
-                selectedItem === item && "font-bold",
-              ].join(" ")}
+                'flex',
+                'flex-col',
+                highlightedIndex === index && 'bg-indigo-500/10 cursor-pointer',
+                selectedItem === item && 'font-bold',
+              ].join(' ')}
               key={`${item.value}${index}`}
               {...getItemProps({ item, index })}
             >
@@ -104,11 +104,11 @@ const Page: NextPage = ({ fallback }: any) => (
 );
 const Party = () => {
   const router = useRouter();
-  const [newAttendee, setNewAttendee] = useState({ first_name: "", email: "" });
+  const [newAttendee, setNewAttendee] = useState({ first_name: '', email: '' });
   const [newExpense, setNewExpense] = useState<{
     description: string;
     value: string;
-  }>({ description: "", value: "" });
+  }>({ description: '', value: '' });
   const {
     data: { party, friends },
     error,
@@ -138,7 +138,7 @@ const Party = () => {
                   rel="noopener noreferrer nofollow"
                 >
                   Acesse o Splitwise
-                </a>{" "}
+                </a>{' '}
                 para quitar sua dívida.
               </p>
             </div>
@@ -155,7 +155,7 @@ const Party = () => {
               className={`flex-shrink-0 w-24 p-2 border rounded-lg cursor-pointer hover:bg-gray-100`}
             >
               <h5 className="text-center truncate">{`${attendee.first_name} ${
-                attendee.last_name || ""
+                attendee.last_name || ''
               }`}</h5>
               <Image
                 src={attendee.photo}
@@ -167,9 +167,9 @@ const Party = () => {
                 }}
               />
               <div className="flex gap-1">
-                <span>{!attendee.answered && "⚠️"}</span>
+                <span>{!attendee.answered && '⚠️'}</span>
                 <span>
-                  {(party.expenses_created ?? true) && attendee.settled && "✅"}
+                  {(party.expenses_created ?? true) && attendee.settled && '✅'}
                 </span>
               </div>
             </div>
@@ -191,20 +191,20 @@ const Party = () => {
               type="button"
               onClick={async () => {
                 await fetch(`/api/party/${router.query.id}/attendee`, {
-                  method: "POST",
+                  method: 'POST',
                   body: JSON.stringify(newAttendee),
                 });
-                setNewAttendee({ first_name: "", email: "" });
+                setNewAttendee({ first_name: '', email: '' });
                 router.push(`${router.asPath}/${newAttendee.email}`);
               }}
-              disabled={newAttendee.email === ""}
+              disabled={newAttendee.email === ''}
               className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 text-white bg-indigo-500 px-4 py-2 rounded-lg"
             >
               Bora!
             </button>
           </div>
         </div>
-        <div className={router.query.host ? "visible" : "hidden"}>
+        <div className={router.query.host ? 'visible' : 'hidden'}>
           <h3 className="text-2xl font-bold mb-2 mt-8">Despesas</h3>
           <div className="flex items-end gap-2">
             <label className="block flex-1">
@@ -240,10 +240,10 @@ const Party = () => {
               type="button"
               onClick={async () => {
                 await fetch(`/api/party/${router.query.id}/expense`, {
-                  method: "POST",
+                  method: 'POST',
                   body: JSON.stringify(newExpense),
                 });
-                setNewExpense({ description: "", value: "" });
+                setNewExpense({ description: '', value: '' });
                 mutate({
                   friends,
                   party: {
@@ -279,7 +279,7 @@ const Party = () => {
         <div className="text-center py-4">
           <button
             onClick={async () => {
-              fetch(`/api/party/${router.query.id}/charge`, { method: "POST" });
+              fetch(`/api/party/${router.query.id}/charge`, { method: 'POST' });
             }}
             className="m-auto text-white bg-indigo-500 disabled:bg-gray-200 px-16 py-4 rounded-lg flex-none"
             disabled={!router.query.host}
