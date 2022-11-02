@@ -1,10 +1,9 @@
 'use client';
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-const Home: NextPage = () => {
+export default function PartyPage() {
   const [name, setName] = useState('');
   const [splitwiseApiKey, setSplitwiseApiKey] = useState('');
   const router = useRouter();
@@ -81,6 +80,4 @@ const Home: NextPage = () => {
       </form>
     </div>
   );
-};
-
-export default Home;
+}
