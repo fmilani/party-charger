@@ -13,7 +13,7 @@ export default function Page() {
           target="_blank"
           className="no-underline hover:underline text-xl font-light"
         >
-          Começar a festa →
+          Começar →
         </a>
       </div>
     </div>
