@@ -4,9 +4,6 @@ import Link from 'next/link';
 import NewExpense from '../../../components/NewExpense';
 import ChargeButton from '../../../components/ChargeButton';
 
-const fetcher = (url: string) =>
-  fetch(url, { cache: 'no-store' }).then((res) => res.json());
-
 export default async function PartyPage({ params }: any) {
   const { friends, party } = await getData(params.id);
   return (
@@ -119,6 +116,8 @@ export default async function PartyPage({ params }: any) {
 
 async function getData(id: string) {
   const endpoint = `https://fmilani-party-charger.builtwithdark.com/party/${id}`;
-  const { party, friends } = await fetcher(endpoint);
+  const { party, friends } = await fetch(endpoint, {
+    next: { revalidate: 60 },
+  }).then((res) => res.json());
   return { party, friends };
 }
