@@ -27,47 +27,55 @@ const PartyAttendee: NextPage = () => {
   return (
     <div className="px-4 md:container md:mx-auto">
       <h1 className="text-3xl font-bold text-center my-8">{partyName}</h1>
-      <h3 className="text-xl font-bold">{`${attendeeName}, diz aí o que você vai dividir!`}</h3>
-      <h3 className="text-lg mb-8">Depois de responder, pode fechar o site.</h3>
-      <div className="grid grid-cols-1 gap-4 justify-center">
-        {expenses.map((expense: any) => (
-          <button
-            key={expense.description}
-            className={`flex gap-1 text-xl border ${
-              expense.share ? 'bg-indigo-500' : 'border-indigo-500'
-            } p-6 rounded-lg`}
-            onClick={async () => {
-              setOpen(false);
-              const optimisticUpdatedExpense = {
-                ...expense,
-                share: !expense.share,
-              };
-              const optimisticData = {
-                ...data,
-                expenses: expenses.map((e: any) => {
-                  if (e.description === expense.description) {
-                    return optimisticUpdatedExpense;
-                  } else {
-                    return e;
-                  }
-                }),
-              };
-              await mutate(updateExpense(expense.description), {
-                optimisticData,
-                rollbackOnError: true,
-                populateCache: true,
-                revalidate: false,
-              });
-              setOpen(true);
-            }}
-          >
-            <span>{expense.share ? '✅' : '❌'}</span>
-            <span className="whitespace-nowrap truncate">
-              {expense.description}
-            </span>
-          </button>
-        ))}
-      </div>
+      {expenses.length > 0 ? (
+        <>
+          <h3 className="text-xl font-bold">{`${attendeeName}, diz aí o que você vai dividir!`}</h3>
+          <h3 className="text-lg mb-8">
+            Depois de responder, pode fechar o site.
+          </h3>
+          <div className="grid grid-cols-1 gap-4 justify-center">
+            {expenses.map((expense: any) => (
+              <button
+                key={expense.description}
+                className={`flex gap-1 text-xl border ${
+                  expense.share ? 'bg-indigo-500' : 'border-indigo-500'
+                } p-6 rounded-lg`}
+                onClick={async () => {
+                  setOpen(false);
+                  const optimisticUpdatedExpense = {
+                    ...expense,
+                    share: !expense.share,
+                  };
+                  const optimisticData = {
+                    ...data,
+                    expenses: expenses.map((e: any) => {
+                      if (e.description === expense.description) {
+                        return optimisticUpdatedExpense;
+                      } else {
+                        return e;
+                      }
+                    }),
+                  };
+                  await mutate(updateExpense(expense.description), {
+                    optimisticData,
+                    rollbackOnError: true,
+                    populateCache: true,
+                    revalidate: false,
+                  });
+                  setOpen(true);
+                }}
+              >
+                <span>{expense.share ? '✅' : '❌'}</span>
+                <span className="whitespace-nowrap truncate">
+                  {expense.description}
+                </span>
+              </button>
+            ))}
+          </div>
+        </>
+      ) : (
+        <h3 className="text-xl font-bold">{`${attendeeName}, nenhuma despesa foi adicionada ainda!`}</h3>
+      )}
       <div className="text-center mt-4 py-4">
         <button
           onClick={() => router.back()}
