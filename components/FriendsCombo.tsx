@@ -17,7 +17,6 @@ export default function FriendsCombo({
   const router = useRouter();
   const searchParams = useSearchParams();
   const isHost = Boolean(searchParams.get('host'));
-  console.log(isHost);
   const [items, setItems] = useState(friends);
   const [newAttendee, setNewAttendee] = useState({ first_name: '', email: '' });
   const {
