@@ -1,7 +1,7 @@
 'use client';
 
 import { useCombobox } from 'downshift';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 export default function FriendsCombo({
@@ -15,6 +15,9 @@ export default function FriendsCombo({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const isHost = Boolean(searchParams.get('host'));
+  console.log(isHost);
   const [items, setItems] = useState(friends);
   const [newAttendee, setNewAttendee] = useState({ first_name: '', email: '' });
   const {
@@ -106,7 +109,11 @@ export default function FriendsCombo({
               body: JSON.stringify(newAttendee),
             });
             setNewAttendee({ first_name: '', email: '' });
-            router.push(`${pathname}/${newAttendee.email}`);
+            if (isHost) {
+              router.refresh();
+            } else {
+              router.push(`${pathname}/${newAttendee.email}`);
+            }
           }}
           disabled={newAttendee.email === ''}
           className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/90 text-white bg-indigo-500 px-4 py-2 rounded-lg"
