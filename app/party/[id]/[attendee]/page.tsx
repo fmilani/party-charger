@@ -16,8 +16,8 @@ export default async function PartyAttendee({ params }: any) {
       <h1 className="text-3xl font-bold text-center my-8">{partyName}</h1>
       {expenses.length > 0 ? (
         <>
-          <h3 className="text-xl text-center font-bold">{`${attendeeName}, diz aí o que você vai dividir!`}</h3>
-          <h3 className="text-sm text-center mb-8">
+          <h3 className="text-xl font-bold">{`${attendeeName}, diz aí o que você vai dividir!`}</h3>
+          <h3 className="text-sm mb-8">
             É só clicar nos items que você vai dividir.
             <br />
             Sua escolha é salva a cada clique.

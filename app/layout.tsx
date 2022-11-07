@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './globals.css';
 export default function RootLayout({
   children,
@@ -10,6 +11,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body className="flex flex-col min-h-screen h-full w-full max-w-xl mx-auto px-4">
+        <div className="py-2 text-lg font-bold flex items-center border-b">
+          <Link href="/party">Party Charger</Link>
+        </div>
         <main className="flex-1">{children}</main>
         <footer className="flex justify-center items-center border-t mt-4 p-4">
           <a
