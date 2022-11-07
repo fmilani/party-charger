@@ -84,7 +84,7 @@ export default function FriendsCombo({
                     'flex',
                     'flex-col',
                     highlightedIndex === index &&
-                      'bg-indigo-500/10 cursor-pointer',
+                      'bg-cyan-700/10 cursor-pointer',
                     newAttendee === item && 'font-bold',
                     'py-1.5',
                     'px-3',
@@ -115,7 +115,7 @@ export default function FriendsCombo({
             }
           }}
           disabled={newAttendee.email === ''}
-          className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/90 text-white bg-indigo-500 px-4 py-2 rounded-lg"
+          className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-cyan-700/90 text-white bg-cyan-700 px-4 py-2 rounded-lg"
         >
           Bora!
         </button>

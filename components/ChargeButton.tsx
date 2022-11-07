@@ -10,7 +10,7 @@ export default function ChargeButton({ partyId }: any) {
       onClick={async () => {
         fetch(`/api/party/${partyId}/charge`, { method: 'POST' });
       }}
-      className="m-auto text-white bg-indigo-500 disabled:bg-gray-200 px-16 py-4 rounded-lg flex-none"
+      className="m-auto text-white bg-gradient-to-r from-cyan-700 to-teal-600 disabled:bg-gray-200 px-16 py-4 w-full rounded-lg flex-none"
     >
       Fazer as contas
     </button>

@@ -52,7 +52,7 @@ export default function NewExpense({ partyId }: any) {
           router.refresh();
         }}
         disabled={!newExpense.description || !newExpense.value}
-        className="disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-indigo-500/10 border border-indigo-500 px-4 py-2 rounded-lg"
+        className="disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-cyan-700/10 border border-cyan-700 px-4 py-2 rounded-lg"
       >
         Adicionar
       </button>

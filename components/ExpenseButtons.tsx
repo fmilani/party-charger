@@ -13,7 +13,9 @@ export default function ExpenseButtons({ expense, id, attendee }: any) {
       <button
         key={expense.description}
         className={`flex gap-1 text-xl border ${
-          expenseShared ? 'bg-indigo-500' : 'border-indigo-500'
+          expenseShared
+            ? 'bg-gradient-to-r from-cyan-700 to-teal-600 text-white'
+            : 'border-cyan-700'
         } p-6 rounded-lg`}
         onClick={async () => {
           setExpenseShared(!expenseShared);

@@ -72,7 +72,7 @@ export default function PartyPage() {
           </label>
           <button
             type="submit"
-            className="text-white bg-gradient-to-r from-teal-500 to-rose-600 w-full py-4 rounded-lg"
+            className="text-white bg-gradient-to-r from-cyan-700 to-teal-600 w-full py-4 rounded-lg"
           >
             Partiu chamar a galera!
           </button>
