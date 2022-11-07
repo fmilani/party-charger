@@ -1,4 +1,4 @@
-import ExpenseButtons from '../../../../components/ExpenseButtons';
+import ExpenseButton from '../../../../components/ExpenseButton';
 
 async function getExpensesResponse({ id, attendee }: any) {
   return await fetch(
@@ -22,9 +22,9 @@ export default async function PartyAttendee({ params }: any) {
             <br />
             Sua escolha é salva a cada clique.
           </h3>
-          <div className="grid grid-cols-1 gap-4 justify-center">
+          <div className="grid grid-cols-1 gap-2 justify-center">
             {expenses.map((expense: any) => (
-              <ExpenseButtons
+              <ExpenseButton
                 key={expense.description}
                 expense={expense}
                 id={id}

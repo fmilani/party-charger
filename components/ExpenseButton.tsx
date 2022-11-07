@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import * as Toast from '@radix-ui/react-toast';
 
-export default function ExpenseButtons({ expense, id, attendee }: any) {
+export default function ExpenseButton({ expense, id, attendee }: any) {
   const router = useRouter();
   const [expenseShared, setExpenseShared] = useState(expense.share);
   const [open, setOpen] = useState(false);
@@ -16,7 +16,7 @@ export default function ExpenseButtons({ expense, id, attendee }: any) {
           expenseShared
             ? 'bg-gradient-to-r from-cyan-700 to-teal-600 text-white'
             : 'border-cyan-700'
-        } p-6 rounded-lg`}
+        } p-4 rounded-lg`}
         onClick={async () => {
           setExpenseShared(!expenseShared);
           await fetch(`/api/party/${id}/${attendee}`, {
