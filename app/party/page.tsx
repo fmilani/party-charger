@@ -1,5 +1,4 @@
 'use client';
-import Head from 'next/head';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -9,15 +8,6 @@ export default function PartyPage() {
   const router = useRouter();
   return (
     <div>
-      <Head>
-        <title>Party Charger</title>
-        <meta
-          name="description"
-          content="Easily charge your friends when you pay for the party"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <h1 className="text-4xl font-bold text-center my-8">
         {name || 'Criar Festa'}
       </h1>
