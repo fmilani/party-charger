@@ -49,21 +49,24 @@ export default function FriendsCombo({
 
   return (
     <>
-      <label id="name-or-email-label" className="w-full">
+      <label
+        id="name-or-email-label"
+        className="uppercase text-xs font-bold text-gray-700/[.54]"
+      >
         Bora? Coloca seu nome aqui embaixo:
       </label>
-      <div className="flex gap-2 mt-1">
+      <div className="flex items-center gap-2 mt-2">
         <div className="flex-1">
           <div id="combobox-input-wrapper" className="flex flex-col gap-1 ">
             <div
-              className="flex shadow-sm bg-white gap-0.5"
+              className="flex drop-shadow-sm bg-white gap-0.5 rounded-lg"
               {...getComboboxProps()}
               aria-owns="name-or-email-results"
             >
               <input
-                placeholder="Nome ou email"
+                placeholder="Nome ou e-mail"
                 type="text"
-                className="w-full border-inherit rounded-lg"
+                className="w-full border-none rounded-lg placeholder:text-xs placeholder:text-gray-700/[.54]"
                 {...getInputProps()}
                 id="name-or-email-search-input"
                 aria-controls="name-or-email-results"
@@ -115,7 +118,7 @@ export default function FriendsCombo({
             }
           }}
           disabled={newAttendee.email === ''}
-          className="disabled:bg-inherit disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-cyan-700/90 text-white bg-cyan-700 px-4 py-2 rounded-lg"
+          className="uppercase text-xs disabled:bg-gray-50 disabled:cursor-not-allowed disabled:border disabled:border-gray-200 disabled:text-gray-400 disabled:hover:bg-gray-200 cursor-pointer hover:bg-cyan-700/90 text-white enabled:bg-gradient-to-r enabled:from-cyan-700 enabled:to-teal-600 px-4 py-3 rounded-lg"
         >
           Bora!
         </button>
