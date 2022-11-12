@@ -27,7 +27,7 @@ export default function RootLayout({
           </Link>
         </div>
         <main className="flex-1">{children}</main>
-        <footer className="flex gap-2 justify-center items-center border-t mt-4 p-4">
+        <footer className="flex flex-col gap-2 justify-center items-center border-t mt-4 p-4">
           <a
             href="https://www.github.com/fmilani"
             target="_blank"
@@ -35,7 +35,6 @@ export default function RootLayout({
           >
             Feito com ❤️ por fmilani
           </a>
-          <span>|</span>
           <a
             href="https://www.behance.net/cmls"
             target="_blank"
